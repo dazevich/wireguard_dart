@@ -5,6 +5,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:wireguard_dart/wireguard_dart.dart';
 
+const cfg = """
+[Interface]
+PrivateKey = 4Css0dwo/b12wj62pmHJMlDOCiiW9yVgmAty3yKtTGo=
+Address = 10.27.0.2/32
+DNS = 8.8.8.8
+
+[Peer]
+PublicKey = opA8Zyv94qVALrRZhhAJhGAxm17ZlR67ZsGqTZNImFo=
+AllowedIPs = 0.0.0.0/0
+Endpoint = 91.217.153.6:34342
+""";
+
 void main() {
   runApp(const MyApp());
 }
@@ -60,7 +72,10 @@ class _MyAppState extends State<MyApp> {
   void setupTunnel() async {
     try {
       await _wireguardDartPlugin.setupTunnel(
-          bundleId: "com.dostupvpn.test.tun");
+        bundleId: "com.dostupvpn.test.tun",
+        endpoint: "91.217.153.6:34342",
+        desc: "Dostup VPN",
+      );
       debugPrint("Setup tunnel success");
     } catch (e) {
       developer.log(
@@ -73,17 +88,11 @@ class _MyAppState extends State<MyApp> {
   void connect() async {
     try {
       // replace with valid config file before running
-      await _wireguardDartPlugin.connect(cfg: """
- [Interface]
-PrivateKey = 2D0D6JvplaOyQG/b2SnXo9kJnytWFptQ7cu/+UQixVk=
-Address = 10.27.0.11/32
-DNS = 8.8.8.8
-
-[Peer]
-PublicKey = opA8Zyv94qVALrRZhhAJhGAxm17ZlR67ZsGqTZNImFo=
-AllowedIPs = 0.0.0.0/0
-Endpoint = 91.217.153.6:34342
-""");
+      await _wireguardDartPlugin.connect(
+        cfg: cfg,
+        endpoint: "91.217.153.6:34342",
+        desc: "Dostup VPN",
+      );
       debugPrint("Connect success");
     } catch (e) {
       developer.log(
@@ -95,7 +104,10 @@ Endpoint = 91.217.153.6:34342
 
   void disconnect() async {
     try {
-      await _wireguardDartPlugin.disconnect();
+      await _wireguardDartPlugin.disconnect(
+        endpoint: "91.217.153.6:34342",
+        desc: "Dostup VPN",
+      );
       debugPrint("Disconnect success");
     } catch (e) {
       developer.log(
