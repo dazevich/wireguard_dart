@@ -15,6 +15,9 @@ public class SwiftWireguardDartPlugin: NSObject, FlutterPlugin {
 
     public static func register(with registrar: FlutterPluginRegistrar) {
         let channel = FlutterMethodChannel(name: "wireguard_dart", binaryMessenger: registrar.messenger())
+        let eventChannel = FlutterEventChannel(name: "wireguard_dart_events", binaryMessenger: registrar.messenger())
+        let streamHandler : WGEventChannel = WGEventChannel();
+        eventChannel.setStreamHandler(streamHandler);
         let instance = SwiftWireguardDartPlugin()
         registrar.addMethodCallDelegate(instance, channel: channel)
     }
@@ -91,6 +94,7 @@ public class SwiftWireguardDartPlugin: NSObject, FlutterPlugin {
                         "cfg": cfg as NSObject
                     ])
                     Self.logger.debug("Start VPN tunnel OK")
+                    WGEventChannel.sendState(state: "connected")
                     result("")
                 } catch {
                     Self.logger.error("Start VPN tunnel ERROR: \(error)")
@@ -121,6 +125,7 @@ public class SwiftWireguardDartPlugin: NSObject, FlutterPlugin {
                 }
                 mgr.connection.stopVPNTunnel()
                 Self.logger.debug("Stop tunnel OK")
+                WGEventChannel.sendState(state: "disconnected")
                 result("")
             }
         default:
@@ -130,13 +135,13 @@ public class SwiftWireguardDartPlugin: NSObject, FlutterPlugin {
 
     func setupProviderManager(bundleId: String) async throws -> NETunnelProviderManager {
         let mgrs = await fetchManagers()
-        let existingMgr = mgrs.first(where: { $0.localizedDescription == "Mysterium VPN" })
+        let existingMgr = mgrs.first(where: { $0.localizedDescription == "Dostup VPN" })
         let mgr = existingMgr ?? NETunnelProviderManager()
 
-        mgr.localizedDescription = "Mysterium VPN"
+        mgr.localizedDescription = "Dostup VPN"
         let proto = NETunnelProviderProtocol()
         proto.providerBundleIdentifier = bundleId
-        proto.serverAddress = "127.0.0.1"  // Fake address
+        proto.serverAddress = "91.217.153.6:34342"
         mgr.protocolConfiguration = proto
         mgr.isEnabled = true
 

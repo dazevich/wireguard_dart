@@ -16,4 +16,6 @@ class WireguardDart {
   Future<void> disconnect() {
     return WireguardDartPlatform.instance.disconnect();
   }
+
+  Stream<dynamic> get states => WireguardDartPlatform.instance.events;
 }

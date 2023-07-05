@@ -9,14 +9,20 @@ class MethodChannelWireguardDart extends WireguardDartPlatform {
   @visibleForTesting
   final methodChannel = const MethodChannel('wireguard_dart');
 
+  /// Event channel need to listen WireGuard states.
+  @visibleForTesting
+  final eventChannel = const EventChannel('wireguard_dart_events');
+
   @override
   Future<Map<String, String>> generateKeyPair() async {
-    return Map<String, String>.from(await methodChannel.invokeMethod('generateKeyPair'));
+    return Map<String, String>.from(
+        await methodChannel.invokeMethod('generateKeyPair'));
   }
 
   @override
   Future<void> setupTunnel({required String bundleId}) async {
-    await methodChannel.invokeMethod<void>('setupTunnel', {'bundleId': bundleId});
+    await methodChannel
+        .invokeMethod<void>('setupTunnel', {'bundleId': bundleId});
   }
 
   @override
@@ -28,4 +34,9 @@ class MethodChannelWireguardDart extends WireguardDartPlatform {
   Future<void> disconnect() async {
     await methodChannel.invokeMethod<void>('disconnect');
   }
+
+  @override
+  // TODO: implement events
+  Stream get events =>
+      eventChannel.receiveBroadcastStream().map((event) => event);
 }
