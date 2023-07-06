@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
+import 'package:wireguard_dart/wireguard_dart.dart';
 
 import 'wireguard_dart_platform_interface.dart';
 
@@ -22,38 +23,26 @@ class MethodChannelWireguardDart extends WireguardDartPlatform {
   @override
   Future<void> setupTunnel({
     required String bundleId,
-    required String endpoint,
-    required String desc,
+    required TunnelConfig tunnelConfig,
   }) async {
     await methodChannel.invokeMethod<void>('setupTunnel', {
       'bundleId': bundleId,
-      'endpoint': endpoint,
-      'desc': desc,
+      'cfg': tunnelConfig.toJson(),
     });
   }
 
   @override
   Future<void> connect({
-    required String cfg,
-    required String endpoint,
-    required String desc,
+    required TunnelConfig tunnelConfig,
   }) async {
     await methodChannel.invokeMethod<void>('connect', {
-      'cfg': cfg,
-      'endpoint': endpoint,
-      'desc': desc,
+      'cfg': tunnelConfig.toString(),
     });
   }
 
   @override
-  Future<void> disconnect({
-    required String endpoint,
-    required String desc,
-  }) async {
-    await methodChannel.invokeMethod<void>('disconnect', {
-      'endpoint': endpoint,
-      'desc': desc,
-    });
+  Future<void> disconnect() async {
+    await methodChannel.invokeMethod<void>('disconnect');
   }
 
   @override

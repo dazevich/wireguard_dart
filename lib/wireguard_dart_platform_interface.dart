@@ -1,4 +1,5 @@
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
+import 'package:wireguard_dart/src/tunnel_config.dart';
 
 import 'wireguard_dart_method_channel.dart';
 
@@ -29,24 +30,18 @@ abstract class WireguardDartPlatform extends PlatformInterface {
 
   Future<void> setupTunnel({
     required String bundleId,
-    required String endpoint,
-    required String desc,
+    required TunnelConfig tunnelConfig,
   }) {
     throw UnimplementedError('setupTunnel() has not been implemented');
   }
 
   Future<void> connect({
-    required String cfg,
-    required String endpoint,
-    required String desc,
+    required TunnelConfig tunnelConfig,
   }) {
     throw UnimplementedError('connect() has not been implemented');
   }
 
-  Future<void> disconnect({
-    required String endpoint,
-    required String desc,
-  }) {
+  Future<void> disconnect() {
     throw UnimplementedError('disconnect() has not been implemented');
   }
 
