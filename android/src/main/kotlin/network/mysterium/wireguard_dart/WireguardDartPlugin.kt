@@ -58,7 +58,7 @@ class WireguardDartPlugin : FlutterPlugin, MethodCallHandler, ActivityAware,
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?): Boolean {
-        havePermission =
+        this.havePermission =
             (requestCode == PERMISSIONS_REQUEST_CODE) && (resultCode == Activity.RESULT_OK)
         return havePermission
     }
@@ -129,6 +129,10 @@ class WireguardDartPlugin : FlutterPlugin, MethodCallHandler, ActivityAware,
             "connect" -> connect(call.argument<String>("cfg").toString(), result)
             "disconnect" -> disconnect(result)
             "getStats" -> handleGetStats(call.arguments, result)
+            "checkPermission" -> {
+                checkPermission()
+                result.success(null)
+            }
             else -> flutterNotImplemented(result)
         }
     }

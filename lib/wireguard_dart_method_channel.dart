@@ -57,6 +57,11 @@ class MethodChannelWireguardDart extends WireguardDartPlatform {
   }
 
   @override
+  Future<void> checkPermission() async {
+    await methodChannel.invokeMethod<void>('checkPermission');
+  }
+
+  @override
   // TODO: implement events
   Stream get events =>
       eventChannel.receiveBroadcastStream().map((event) => event);

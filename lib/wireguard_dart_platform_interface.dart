@@ -52,4 +52,8 @@ abstract class WireguardDartPlatform extends PlatformInterface {
 
   Stream<dynamic> get events =>
       throw UnimplementedError('events has not been implemented,');
+
+  Future<void> checkPermission() {
+    throw UnimplementedError('disconnect() has not been implemented');
+  }
 }

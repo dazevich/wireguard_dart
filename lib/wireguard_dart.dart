@@ -39,5 +39,9 @@ class WireguardDart {
     );
   }
 
+  Future<void> checkPermisson() {
+    return WireguardDartPlatform.instance.checkPermission();
+  }
+
   Stream<dynamic> get states => WireguardDartPlatform.instance.events;
 }
