@@ -10,7 +10,7 @@ public enum TunnelConfError : Error {
 }
 
 extension UserDefaults {
-    static let group = UserDefaults(suiteName: "group.com.dostupvpn.app")
+    static let group = UserDefaults(suiteName: "group.com.donutvpn.app")
 }
 
 public class SwiftWireguardDartPlugin: NSObject, FlutterPlugin {
@@ -171,10 +171,10 @@ public class SwiftWireguardDartPlugin: NSObject, FlutterPlugin {
     
     func setupProviderManager(bundleId: String, cfg: Dictionary<String, Any>) async throws -> NETunnelProviderManager {
         let mgrs = await fetchManagers()
-        let existingMgr = mgrs.first(where: { $0.localizedDescription == "VPN Dostup" })
+        let existingMgr = mgrs.first(where: { $0.localizedDescription == "Donut PROXY" })
         let mgr = existingMgr ?? NETunnelProviderManager()
         
-        mgr.localizedDescription = "VPN Dostup"
+        mgr.localizedDescription = "Donut PROXY"
         
         guard let tunnelConfig else {
             Self.logger.error("Required arg 'tunnelConfig' not provided")
@@ -264,7 +264,7 @@ public class SwiftWireguardDartPlugin: NSObject, FlutterPlugin {
         
         func writeToPrefences(cfg: String) {
             Self.logger.debug("Write to shared: \(cfg)")
-            UserDefaults.group?.set(cfg, forKey: "dostupvpn.shared")
+            UserDefaults.group?.set(cfg, forKey: "donutvpn.shared")
         }
     }
     
