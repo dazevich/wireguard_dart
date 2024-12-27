@@ -264,7 +264,7 @@ public class SwiftWireguardDartPlugin: NSObject, FlutterPlugin {
         
         func writeToPrefences(cfg: String) {
             Self.logger.debug("Write to shared: \(cfg)")
-            UserDefaults.group?.set(cfg, forKey: "donutvpn.shared")
+            UserDefaults.group?.set(cfg, forKey: "donut.proxy.shared")
         }
     }
     
