@@ -171,10 +171,10 @@ public class SwiftWireguardDartPlugin: NSObject, FlutterPlugin {
     
     func setupProviderManager(bundleId: String, cfg: Dictionary<String, Any>) async throws -> NETunnelProviderManager {
         let mgrs = await fetchManagers()
-        let existingMgr = mgrs.first(where: { $0.localizedDescription == "VPN Dostup" })
+        let existingMgr = mgrs.first(where: { $0.localizedDescription == "Window Proxy" })
         let mgr = existingMgr ?? NETunnelProviderManager()
         
-        mgr.localizedDescription = "VPN Dostup"
+        mgr.localizedDescription = "Window Proxy"
         
         guard let tunnelConfig else {
             Self.logger.error("Required arg 'tunnelConfig' not provided")
