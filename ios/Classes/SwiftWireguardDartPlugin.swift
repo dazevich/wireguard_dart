@@ -10,7 +10,7 @@ public enum TunnelConfError : Error {
 }
 
 extension UserDefaults {
-    static let group = UserDefaults(suiteName: "group.com.dostupvpn.app")
+    static let group = UserDefaults(suiteName: "group.com.windowproxy.app")
 }
 
 public class SwiftWireguardDartPlugin: NSObject, FlutterPlugin {
@@ -264,7 +264,7 @@ public class SwiftWireguardDartPlugin: NSObject, FlutterPlugin {
         
         func writeToPrefences(cfg: String) {
             Self.logger.debug("Write to shared: \(cfg)")
-            UserDefaults.group?.set(cfg, forKey: "dostupvpn.shared")
+            UserDefaults.group?.set(cfg, forKey: "windowproxy.shared")
         }
     }
     
