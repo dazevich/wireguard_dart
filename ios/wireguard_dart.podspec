@@ -16,12 +16,17 @@ Wireguard Dart SDK for iOS
   s.source = { :path => "." }
   s.source_files = "Classes/**/*"
 
-  s.platform = :ios, "15.0"
+//  s.platform = :ios, "15.0"
 
   # Flutter.framework does not contain a i386 slice.
   s.pod_target_xcconfig = { "DEFINES_MODULE" => "YES", "EXCLUDED_ARCHS[sdk=iphonesimulator*]" => "i386" }
   s.swift_version = "5.7"
 
-  s.dependency "Flutter"
-  s.dependency "WireGuardKit"
+  s.ios.dependency "Flutter"
+  s.osx.dependency "FlutterMacOS"
+  s.ios.deployment_target = "15.0"
+  s.osx.deployment_target = "12.0"
+
+  s.dependency "WireGuardKit", "0.5"
+
 end
