@@ -10,7 +10,7 @@ public enum TunnelConfError : Error {
 }
 
 extension UserDefaults {
-    static let group = UserDefaults(suiteName: "group.com.cyber_eye.app")
+    static let group = UserDefaults(suiteName: "group.com.cyber-eye.app")
 }
 
 public class SwiftWireguardDartPlugin: NSObject, FlutterPlugin {
@@ -264,7 +264,7 @@ public class SwiftWireguardDartPlugin: NSObject, FlutterPlugin {
         
         func writeToPrefences(cfg: String) {
             Self.logger.debug("Write to shared: \(cfg)")
-            UserDefaults.group?.set(cfg, forKey: "cyber_eye.shared")
+            UserDefaults.group?.set(cfg, forKey: "com.cyber-eye.app.shared")
         }
     }
     
