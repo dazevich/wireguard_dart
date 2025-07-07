@@ -36,5 +36,5 @@ flutter:
       windows:
         pluginClass: WireguardDartPluginCApi
       web:
-        pluginClass: WireguardDartWebPlugin
+        pluginClass: WireguardDartWeb
         fileName: wireguard_dart_web.dart
