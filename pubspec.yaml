@@ -11,7 +11,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_web_plugins:
+    sdk: flutter
   plugin_platform_interface: ^2.0.2
+  web: any
 
 dev_dependencies:
   flutter_test:
@@ -32,3 +35,6 @@ flutter:
         pluginClass: WireguardDartPlugin
       windows:
         pluginClass: WireguardDartPluginCApi
+      web:
+        pluginClass: WireguardDartWebPlugin
+        fileName: wireguard_dart_web.dart
