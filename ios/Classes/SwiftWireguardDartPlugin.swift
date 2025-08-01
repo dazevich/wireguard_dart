@@ -10,7 +10,7 @@ public enum TunnelConfError : Error {
 }
 
 extension UserDefaults {
-    static let group = UserDefaults(suiteName: "group.com.cyber-eye.app")
+    static let group = UserDefaults(suiteName: "group.com.configrepository.app")
 }
 
 public class SwiftWireguardDartPlugin: NSObject, FlutterPlugin {
@@ -171,10 +171,10 @@ public class SwiftWireguardDartPlugin: NSObject, FlutterPlugin {
     
     func setupProviderManager(bundleId: String, cfg: Dictionary<String, Any>) async throws -> NETunnelProviderManager {
         let mgrs = await fetchManagers()
-        let existingMgr = mgrs.first(where: { $0.localizedDescription == "Cyber Eye" })
+        let existingMgr = mgrs.first(where: { $0.localizedDescription == "Config Repository" })
         let mgr = existingMgr ?? NETunnelProviderManager()
         
-        mgr.localizedDescription = "Cyber Eye"
+        mgr.localizedDescription = "Config Repository"
         
         guard let tunnelConfig else {
             Self.logger.error("Required arg 'tunnelConfig' not provided")
@@ -264,7 +264,7 @@ public class SwiftWireguardDartPlugin: NSObject, FlutterPlugin {
         
         func writeToPrefences(cfg: String) {
             Self.logger.debug("Write to shared: \(cfg)")
-            UserDefaults.group?.set(cfg, forKey: "com.cyber-eye.app.shared")
+            UserDefaults.group?.set(cfg, forKey: "com.configrepository.app.shared")
         }
     }
     
