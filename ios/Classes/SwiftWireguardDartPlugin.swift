@@ -10,7 +10,7 @@ public enum TunnelConfError : Error {
 }
 
 extension UserDefaults {
-    static let group = UserDefaults(suiteName: "group.com.cyber-eye.app")
+    static let group = UserDefaults(suiteName: "group.com.beget.cyber-eye.app")
 }
 
 public class SwiftWireguardDartPlugin: NSObject, FlutterPlugin {
