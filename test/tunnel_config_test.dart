@@ -23,6 +23,7 @@ void main() {
       dns: "8.8.8.8",
     );
     final peer = PeerConfig(
+      name: 'name',
       publicKey: "pubKey",
       allowedIps: "0.0.0.0/0",
       endpoint: "endpoint",
