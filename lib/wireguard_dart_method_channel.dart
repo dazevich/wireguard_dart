@@ -53,7 +53,12 @@ class MethodChannelWireguardDart extends WireguardDartPlatform {
 
   @override
   Future<List<String>> getCurrentConfig() async {
-    return await methodChannel.invokeMethod('getCurrentConfig');
+    final data = await methodChannel.invokeMethod('getCurrentConfig');
+    if (data == null || data is! List) {
+      return [];
+    }
+
+    return data.cast<String>();
   }
 
   @override
