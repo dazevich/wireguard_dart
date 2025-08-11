@@ -266,7 +266,8 @@ class WireguardDartPlugin : FlutterPlugin, MethodCallHandler, ActivityAware,
     }
 
     private fun getCurrentConfig(result: Result) {
-        var tunnels = com.and
+        var tunnels = getRunningTunnelNames()
+        result.success(tunnels)
     }
 
     override fun onDetachedFromEngine(binding: FlutterPlugin.FlutterPluginBinding) {
