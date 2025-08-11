@@ -38,7 +38,7 @@ class WireguardDart {
     return WireguardDartPlatform.instance.checkPermission();
   }
 
-  Future<dynamic> getCurrentConfig() {
+  Future<List<String>> getCurrentConfig() {
     return WireguardDartPlatform.instance.getCurrentConfig();
   }
 

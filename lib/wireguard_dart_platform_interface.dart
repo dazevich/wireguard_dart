@@ -35,7 +35,7 @@ abstract class WireguardDartPlatform extends PlatformInterface {
     throw UnimplementedError('setupTunnel() has not been implemented');
   }
 
-  Future<dynamic> getCurrentConfig() {
+  Future<List<String>> getCurrentConfig() {
     throw UnimplementedError('getCurrentConfig() has not been implemented');
   }
 
