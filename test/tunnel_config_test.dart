@@ -27,7 +27,7 @@ void main() {
       allowedIps: "0.0.0.0/0",
       endpoint: "endpoint",
     );
-    final tunnelConfig = TunnelConfig(interface: interface, peer: peer);
+    final tunnelConfig = TunnelConfig(name: 'test', interface: interface, peer: peer);
 
     final tunnelConfigString = tunnelConfig.toString();
 
