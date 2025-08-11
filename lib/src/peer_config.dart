@@ -17,7 +17,6 @@ class PeerConfig {
     final buffer = StringBuffer();
     buffer
       ..writeln('[Peer]')
-      ..writeln('Name = $name')
       ..writeln('PublicKey = $publicKey')
       ..writeln('AllowedIPs = $allowedIps')
       ..writeln('Endpoint = $endpoint');
