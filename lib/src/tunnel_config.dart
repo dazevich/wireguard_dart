@@ -2,12 +2,10 @@ import 'package:wireguard_dart/src/interface_config.dart';
 import 'package:wireguard_dart/src/peer_config.dart';
 
 class TunnelConfig {
-  final String name;
   final InterfaceConfig interface;
   final PeerConfig peer;
 
   TunnelConfig({
-    required this.name,
     required this.interface,
     required this.peer,
   });
@@ -21,7 +19,6 @@ class TunnelConfig {
   }
 
   Map<String, dynamic> toJson() => {
-        'name': name,
         'interface': interface.toJson(),
         'peer': peer.toJson(),
       };
