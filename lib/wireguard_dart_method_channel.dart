@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:wireguard_dart/wireguard_dart.dart';
@@ -16,8 +18,7 @@ class MethodChannelWireguardDart extends WireguardDartPlatform {
 
   @override
   Future<Map<String, String>> generateKeyPair() async {
-    return Map<String, String>.from(
-        await methodChannel.invokeMethod('generateKeyPair'));
+    return Map<String, String>.from(await methodChannel.invokeMethod('generateKeyPair'));
   }
 
   @override
@@ -51,7 +52,16 @@ class MethodChannelWireguardDart extends WireguardDartPlatform {
   }
 
   @override
+  Future<Map<String, dynamic>?> getCurrentConfig() async {
+    final data = await methodChannel.invokeMethod('getCurrentConfig');
+    if (data == null) {
+      return null;
+    }
+
+    return json.decode(data);
+  }
+
+  @override
   // TODO: implement events
-  Stream get events =>
-      eventChannel.receiveBroadcastStream().map((event) => event);
+  Stream get events => eventChannel.receiveBroadcastStream().map((event) => event);
 }

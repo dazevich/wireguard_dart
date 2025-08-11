@@ -129,10 +129,12 @@ class WireguardDartPlugin : FlutterPlugin, MethodCallHandler, ActivityAware,
             "connect" -> connect(call.argument<String>("cfg").toString(), result)
             "disconnect" -> disconnect(result)
             "getStats" -> handleGetStats(call.arguments, result)
+            "getCurrentConfig" -> getCurrentConfig(result)
             "checkPermission" -> {
                 checkPermission()
                 result.success(null)
             }
+
             else -> flutterNotImplemented(result)
         }
     }
@@ -261,6 +263,10 @@ class WireguardDartPlugin : FlutterPlugin, MethodCallHandler, ActivityAware,
             hashMapOf("privateKey" to privateKey, "publicKey" to publicKey)
         result.success(map)
         return
+    }
+
+    private fun getCurrentConfig(result: Result) {
+        var tunnels = com.and
     }
 
     override fun onDetachedFromEngine(binding: FlutterPlugin.FlutterPluginBinding) {

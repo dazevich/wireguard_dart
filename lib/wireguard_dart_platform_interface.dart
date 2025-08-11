@@ -35,6 +35,10 @@ abstract class WireguardDartPlatform extends PlatformInterface {
     throw UnimplementedError('setupTunnel() has not been implemented');
   }
 
+  Future<Map<String, dynamic>?> getCurrentConfig() {
+    throw UnimplementedError('getCurrentConfig() has not been implemented');
+  }
+
   Future<void> connect({
     required TunnelConfig tunnelConfig,
   }) {
@@ -45,8 +49,7 @@ abstract class WireguardDartPlatform extends PlatformInterface {
     throw UnimplementedError('disconnect() has not been implemented');
   }
 
-  Stream<dynamic> get events =>
-      throw UnimplementedError('events has not been implemented,');
+  Stream<dynamic> get events => throw UnimplementedError('events has not been implemented,');
 
   Future<void> checkPermission() {
     throw UnimplementedError('disconnect() has not been implemented');

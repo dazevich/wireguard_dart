@@ -7,13 +7,7 @@ export 'src/interface_config.dart';
 export 'src/peer_config.dart';
 
 class WireguardDart {
-  final String bundleId;
-  final String description;
-
-  WireguardDart({
-    required this.bundleId,
-    required this.description,
-  });
+  const WireguardDart();
 
   Future<Map<String, String>> generateKeyPair() {
     return WireguardDartPlatform.instance.generateKeyPair();
@@ -23,7 +17,7 @@ class WireguardDart {
     required TunnelConfig tunnelConfig,
   }) {
     return WireguardDartPlatform.instance.setupTunnel(
-      bundleId: bundleId,
+      bundleId: tunnelConfig.peer.name,
       tunnelConfig: tunnelConfig,
     );
   }
@@ -42,6 +36,10 @@ class WireguardDart {
 
   Future<void> checkPermisson() {
     return WireguardDartPlatform.instance.checkPermission();
+  }
+
+  Future<Map<String, dynamic>?> getCurrentConfig() {
+    return WireguardDartPlatform.instance.getCurrentConfig();
   }
 
   Stream<dynamic> get states => WireguardDartPlatform.instance.events;
