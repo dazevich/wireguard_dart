@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:wireguard_dart/src/interface_config.dart';
 import 'package:wireguard_dart/src/peer_config.dart';
 
@@ -9,6 +11,8 @@ class TunnelConfig {
     required this.interface,
     required this.peer,
   });
+
+  String get id => base64Encode(utf8.encode('${peer.name}${peer.endpoint}'));
 
   @override
   String toString() {
