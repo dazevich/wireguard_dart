@@ -14,10 +14,11 @@ class WireguardDart {
   }
 
   Future<void> setupTunnel({
+    required String bundleId,
     required TunnelConfig tunnelConfig,
   }) {
     return WireguardDartPlatform.instance.setupTunnel(
-      bundleId: tunnelConfig.peer.name,
+      bundleId:bundleId,
       tunnelConfig: tunnelConfig,
     );
   }

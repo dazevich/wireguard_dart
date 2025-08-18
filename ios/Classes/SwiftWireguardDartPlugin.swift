@@ -10,7 +10,7 @@ public enum TunnelConfError : Error {
 }
 
 extension UserDefaults {
-    static let group = UserDefaults(suiteName: "group.com.app.configrepository")
+    static let group = UserDefaults(suiteName: "group.com.configrepository.app")
 }
 
 public class SwiftWireguardDartPlugin: NSObject, FlutterPlugin {
@@ -161,8 +161,23 @@ public class SwiftWireguardDartPlugin: NSObject, FlutterPlugin {
                 Self.logger.debug("Stop tunnel OK")
                 result("")
             }
-            
-            
+
+        case "getCurrentConfig":
+            Self.logger.debug("hande get configs")
+            Task {
+                var mrg: NETunnelProviderManager
+                do {
+                     let mgrs = await fetchManagers()
+                     let existingMgr = mgrs.first(where: { $0.localizedDescription == "Config Repository" })
+                     mgr = existingMgr ?? NETunnelProviderManager()
+                } catch {
+                    result(
+                        FlutterError.init(
+                            code: "NATIVE_ERR", message: "could not find VPN tunnel provider: \(error)",
+                            details: nil))
+                    return
+                }
+            }
             
         default:
             result(FlutterMethodNotImplemented)
@@ -264,7 +279,7 @@ public class SwiftWireguardDartPlugin: NSObject, FlutterPlugin {
         
         func writeToPrefences(cfg: String) {
             Self.logger.debug("Write to shared: \(cfg)")
-            UserDefaults.group?.set(cfg, forKey: "com.app.configrepository.shared")
+            UserDefaults.group?.set(cfg, forKey: "com.configrepository.app.shared")
         }
     }
     
