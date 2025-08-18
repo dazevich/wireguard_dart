@@ -164,20 +164,20 @@ public class SwiftWireguardDartPlugin: NSObject, FlutterPlugin {
 
         case "getCurrentConfig":
             Self.logger.debug("hande get configs")
-            Task {
-                var mrg: NETunnelProviderManager
-                do {
-                     let mgrs = await fetchManagers()
-                     let existingMgr = mgrs.first(where: { $0.localizedDescription == "Config Repository" })
-                     mgr = existingMgr ?? NETunnelProviderManager()
-                } catch {
-                    result(
-                        FlutterError.init(
-                            code: "NATIVE_ERR", message: "could not find VPN tunnel provider: \(error)",
-                            details: nil))
-                    return
-                }
-            }
+//            Task {
+//                var mrg: NETunnelProviderManager
+//                do {
+//                     let mgrs = await fetchManagers()
+//                     let existingMgr = mgrs.first(where: { $0.localizedDescription == "Config Repository" })
+//                     mgr = existingMgr ?? NETunnelProviderManager()
+//                } catch {
+//                    result(
+//                        FlutterError.init(
+//                            code: "NATIVE_ERR", message: "could not find VPN tunnel provider: \(error)",
+//                            details: nil))
+//                    return
+//                }
+//            }
             
         default:
             result(FlutterMethodNotImplemented)
